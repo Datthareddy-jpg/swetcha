@@ -1,40 +1,47 @@
-let count = 0;
-const counter = document.getElementById("counter");
-const increaseBtn = document.getElementById("increase");
-const decreaseBtn = document.getElementById("decrease");
-const resetBtn = document.getElementById("reset");
+document.addEventListener("DOMContentLoaded", () => {
+    let count = 0;
 
-function updateCounter() {
-    counter.textContent = count;
+    const counter = document.getElementById("counter");
+    const increaseBtn = document.getElementById("increase");
+    const decreaseBtn = document.getElementById("decrease");
+    const resetBtn = document.getElementById("reset");
 
-    // Keep color changes
-    if (count > 0) {
-        counter.style.color = "green";
-    } else if (count < 0) {
-        counter.style.color = "red";
-    } else {
-        counter.style.color = "black";
+    function updateCounter() {
+        counter.textContent = count;
+
+        // Color logic
+        if (count > 0) {
+            counter.style.color = "green";
+        } else if (count < 0) {
+            counter.style.color = "red";
+        } else {
+            counter.style.color = "black";
+        }
+
+        // Hide + button at 10
+        if (count >= 10) {
+            increaseBtn.style.display = "none";
+        } else {
+            increaseBtn.style.display = "inline-block";
+        }
     }
 
-    // Hide + button at 10
-    if (count === 10) {
-        increaseBtn.style.display = "none";
-    } else {
-        increaseBtn.style.display = "inline-block";
-    }
-}
-
-increaseBtn.addEventListener("click", () => {
-    count++;
+    // Call once at start
     updateCounter();
+
+    increaseBtn.addEventListener("click", function () {
+        count++;
+        updateCounter();
+    });
+
+    decreaseBtn.addEventListener("click", function () {
+        count--;
+        updateCounter();
+    });
+
+    resetBtn.addEventListener("click", function () {
+        count = 0;
+        updateCounter();
+    });
 });
 
-decreaseBtn.addEventListener("click", () => {
-    count--;
-    updateCounter();
-});
-
-resetBtn.addEventListener("click", () => {
-    count = 0;
-    updateCounter();
-});
