@@ -9,6 +9,7 @@ const resetBtn = document.getElementById("reset");
 function updateCounter() {
     counter.textContent = count;
 
+    // Change color
     if (count > 0) {
         counter.style.color = "green";
     } else if (count < 0) {
@@ -16,16 +17,19 @@ function updateCounter() {
     } else {
         counter.style.color = "black";
     }
+
+    // Disable + button at limit
+    if (count >= MAX_LIMIT) {
+        increaseBtn.disabled = true;
+    } else {
+        increaseBtn.disabled = false;
+    }
 }
 
 increaseBtn.addEventListener("click", () => {
     if (count < MAX_LIMIT) {
         count++;
         updateCounter();
-
-        if (count === MAX_LIMIT) {
-            alert("Maximum limit reached!");
-        }
     }
 });
 
@@ -38,3 +42,4 @@ resetBtn.addEventListener("click", () => {
     count = 0;
     updateCounter();
 });
+
