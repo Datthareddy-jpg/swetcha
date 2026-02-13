@@ -1,6 +1,4 @@
 let count = 0;
-const MAX_LIMIT = 10;
-
 const counter = document.getElementById("counter");
 const increaseBtn = document.getElementById("increase");
 const decreaseBtn = document.getElementById("decrease");
@@ -9,7 +7,7 @@ const resetBtn = document.getElementById("reset");
 function updateCounter() {
     counter.textContent = count;
 
-    // Change color
+    // Keep color changes
     if (count > 0) {
         counter.style.color = "green";
     } else if (count < 0) {
@@ -18,8 +16,8 @@ function updateCounter() {
         counter.style.color = "black";
     }
 
-    // Disable + button at limit
-    if (count >= MAX_LIMIT) {
+    // Hide + button at 10
+    if (count === 10) {
         increaseBtn.style.display = "none";
     } else {
         increaseBtn.style.display = "inline-block";
@@ -27,10 +25,8 @@ function updateCounter() {
 }
 
 increaseBtn.addEventListener("click", () => {
-    if (count < MAX_LIMIT) {
-        count++;
-        updateCounter();
-    }
+    count++;
+    updateCounter();
 });
 
 decreaseBtn.addEventListener("click", () => {
@@ -42,4 +38,3 @@ resetBtn.addEventListener("click", () => {
     count = 0;
     updateCounter();
 });
-
