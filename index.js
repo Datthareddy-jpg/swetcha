@@ -1,4 +1,5 @@
 let count = 0;
+const MAX_LIMIT = 10;
 
 const counter = document.getElementById("counter");
 const increaseBtn = document.getElementById("increase");
@@ -18,8 +19,14 @@ function updateCounter() {
 }
 
 increaseBtn.addEventListener("click", () => {
-    count++;
-    updateCounter();
+    if (count < MAX_LIMIT) {
+        count++;
+        updateCounter();
+
+        if (count === MAX_LIMIT) {
+            alert("Maximum limit reached!");
+        }
+    }
 });
 
 decreaseBtn.addEventListener("click", () => {
