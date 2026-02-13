@@ -20,9 +20,9 @@ function updateCounter() {
 
     // Disable + button at limit
     if (count >= MAX_LIMIT) {
-        increaseBtn.disabled = true;
+        increaseBtn.style.display = "none";
     } else {
-        increaseBtn.disabled = false;
+        increaseBtn.style.display = "inline-block";
     }
 }
 
